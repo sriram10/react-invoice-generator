@@ -1,27 +1,27 @@
 {
   "files": {
-    "main.css": "/invoice-generator/static/css/main.e00cdb28.chunk.css",
-    "main.js": "/invoice-generator/static/js/main.203a81cf.chunk.js",
-    "main.js.map": "/invoice-generator/static/js/main.203a81cf.chunk.js.map",
-    "runtime-main.js": "/invoice-generator/static/js/runtime-main.e7dfa560.js",
-    "runtime-main.js.map": "/invoice-generator/static/js/runtime-main.e7dfa560.js.map",
-    "static/css/2.0d77bc6e.chunk.css": "/invoice-generator/static/css/2.0d77bc6e.chunk.css",
-    "static/js/2.ad3e5b4b.chunk.js": "/invoice-generator/static/js/2.ad3e5b4b.chunk.js",
-    "static/js/2.ad3e5b4b.chunk.js.map": "/invoice-generator/static/js/2.ad3e5b4b.chunk.js.map",
-    "index.html": "/invoice-generator/index.html",
-    "precache-manifest.7f4bfb75ce9ce44037c8d1344d914a47.js": "/invoice-generator/precache-manifest.7f4bfb75ce9ce44037c8d1344d914a47.js",
-    "service-worker.js": "/invoice-generator/service-worker.js",
-    "static/css/2.0d77bc6e.chunk.css.map": "/invoice-generator/static/css/2.0d77bc6e.chunk.css.map",
-    "static/css/main.e00cdb28.chunk.css.map": "/invoice-generator/static/css/main.e00cdb28.chunk.css.map",
-    "static/js/2.ad3e5b4b.chunk.js.LICENSE.txt": "/invoice-generator/static/js/2.ad3e5b4b.chunk.js.LICENSE.txt",
-    "static/media/Outfit.ttf": "/invoice-generator/static/media/Outfit.dac95be0.ttf",
-    "static/media/main.scss": "/invoice-generator/static/media/resize.d4da359f.svg"
+    "main.css": "/react-invoice-generator/static/css/main.20898a51.chunk.css",
+    "main.js": "/react-invoice-generator/static/js/main.e0f2e806.chunk.js",
+    "main.js.map": "/react-invoice-generator/static/js/main.e0f2e806.chunk.js.map",
+    "runtime-main.js": "/react-invoice-generator/static/js/runtime-main.33c79cdc.js",
+    "runtime-main.js.map": "/react-invoice-generator/static/js/runtime-main.33c79cdc.js.map",
+    "static/css/2.0d77bc6e.chunk.css": "/react-invoice-generator/static/css/2.0d77bc6e.chunk.css",
+    "static/js/2.b36dc506.chunk.js": "/react-invoice-generator/static/js/2.b36dc506.chunk.js",
+    "static/js/2.b36dc506.chunk.js.map": "/react-invoice-generator/static/js/2.b36dc506.chunk.js.map",
+    "index.html": "/react-invoice-generator/index.html",
+    "precache-manifest.67d8fd1470beb536300798ee4a8c7cf4.js": "/react-invoice-generator/precache-manifest.67d8fd1470beb536300798ee4a8c7cf4.js",
+    "service-worker.js": "/react-invoice-generator/service-worker.js",
+    "static/css/2.0d77bc6e.chunk.css.map": "/react-invoice-generator/static/css/2.0d77bc6e.chunk.css.map",
+    "static/css/main.20898a51.chunk.css.map": "/react-invoice-generator/static/css/main.20898a51.chunk.css.map",
+    "static/js/2.b36dc506.chunk.js.LICENSE.txt": "/react-invoice-generator/static/js/2.b36dc506.chunk.js.LICENSE.txt",
+    "static/media/Outfit.ttf": "/react-invoice-generator/static/media/Outfit.dac95be0.ttf",
+    "static/media/main.scss": "/react-invoice-generator/static/media/resize.d4da359f.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.e7dfa560.js",
+    "static/js/runtime-main.33c79cdc.js",
     "static/css/2.0d77bc6e.chunk.css",
-    "static/js/2.ad3e5b4b.chunk.js",
-    "static/css/main.e00cdb28.chunk.css",
-    "static/js/main.203a81cf.chunk.js"
+    "static/js/2.b36dc506.chunk.js",
+    "static/css/main.20898a51.chunk.css",
+    "static/js/main.e0f2e806.chunk.js"
   ]
 }
