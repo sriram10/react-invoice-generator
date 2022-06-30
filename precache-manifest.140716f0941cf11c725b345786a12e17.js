@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "544abe669c98e6a108c3f0ca872da3f0",
+    "revision": "33125b83d29b1e5d2f658044d54f6395",
     "url": "/react-invoice-generator/index.html"
   },
   {
@@ -8,8 +8,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/react-invoice-generator/static/css/2.0d77bc6e.chunk.css"
   },
   {
-    "revision": "6d9f1b8d69aa4deab9db",
-    "url": "/react-invoice-generator/static/css/main.20898a51.chunk.css"
+    "revision": "cd6b545da82d03160bb9",
+    "url": "/react-invoice-generator/static/css/main.f59df86f.chunk.css"
   },
   {
     "revision": "bb84986598b6b36e99fd",
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/react-invoice-generator/static/js/2.b36dc506.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "6d9f1b8d69aa4deab9db",
-    "url": "/react-invoice-generator/static/js/main.066f6862.chunk.js"
+    "revision": "cd6b545da82d03160bb9",
+    "url": "/react-invoice-generator/static/js/main.8ca5f963.chunk.js"
   },
   {
     "revision": "aabb303fe90f96d72bbb",
