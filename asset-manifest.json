@@ -1,28 +1,18 @@
 {
   "files": {
-    "main.css": "/react-invoice-generator/static/css/main.b86f37f8.chunk.css",
-    "main.js": "/react-invoice-generator/static/js/main.87d81c85.chunk.js",
-    "main.js.map": "/react-invoice-generator/static/js/main.87d81c85.chunk.js.map",
-    "runtime-main.js": "/react-invoice-generator/static/js/runtime-main.33c79cdc.js",
-    "runtime-main.js.map": "/react-invoice-generator/static/js/runtime-main.33c79cdc.js.map",
-    "static/css/2.0d77bc6e.chunk.css": "/react-invoice-generator/static/css/2.0d77bc6e.chunk.css",
-    "static/js/2.aabf61b3.chunk.js": "/react-invoice-generator/static/js/2.aabf61b3.chunk.js",
-    "static/js/2.aabf61b3.chunk.js.map": "/react-invoice-generator/static/js/2.aabf61b3.chunk.js.map",
+    "main.css": "/react-invoice-generator/static/css/main.d9e57924.css",
+    "main.js": "/react-invoice-generator/static/js/main.45762d95.js",
+    "static/media/default-logo.png": "/react-invoice-generator/static/media/default-logo.3b7ca14f1f8f6b4bfe8b.png",
+    "static/media/default-logo-2.png": "/react-invoice-generator/static/media/default-logo-2.7c70bf83d2162c370d25.png",
+    "static/media/download.svg": "/react-invoice-generator/static/media/download.18bbd42e6b29fac26103.svg",
     "index.html": "/react-invoice-generator/index.html",
-    "precache-manifest.bd3f31bb83ea427ee423764da4ade5dd.js": "/react-invoice-generator/precache-manifest.bd3f31bb83ea427ee423764da4ade5dd.js",
-    "service-worker.js": "/react-invoice-generator/service-worker.js",
-    "static/css/2.0d77bc6e.chunk.css.map": "/react-invoice-generator/static/css/2.0d77bc6e.chunk.css.map",
-    "static/css/main.b86f37f8.chunk.css.map": "/react-invoice-generator/static/css/main.b86f37f8.chunk.css.map",
-    "static/js/2.aabf61b3.chunk.js.LICENSE.txt": "/react-invoice-generator/static/js/2.aabf61b3.chunk.js.LICENSE.txt",
-    "static/media/Outfit.ttf": "/react-invoice-generator/static/media/Outfit.dac95be0.ttf",
-    "static/media/default-logo.png": "/react-invoice-generator/static/media/default-logo.03c57f6b.png",
-    "static/media/main.scss": "/react-invoice-generator/static/media/resize.d4da359f.svg"
+    "static/media/resize.svg": "/react-invoice-generator/static/media/resize.f719defd23407ef1b1e1.svg",
+    "static/media/remove.svg": "/react-invoice-generator/static/media/remove.ecaaf36889311f12afc4.svg",
+    "main.d9e57924.css.map": "/react-invoice-generator/static/css/main.d9e57924.css.map",
+    "main.45762d95.js.map": "/react-invoice-generator/static/js/main.45762d95.js.map"
   },
   "entrypoints": [
-    "static/js/runtime-main.33c79cdc.js",
-    "static/css/2.0d77bc6e.chunk.css",
-    "static/js/2.aabf61b3.chunk.js",
-    "static/css/main.b86f37f8.chunk.css",
-    "static/js/main.87d81c85.chunk.js"
+    "static/css/main.d9e57924.css",
+    "static/js/main.45762d95.js"
   ]
 }
