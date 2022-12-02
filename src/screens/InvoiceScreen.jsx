@@ -8,6 +8,7 @@ import fetchData from '../utils/fetchData';
 const currencyList = {
   'INR': { symbol: '₹', code: 'INR', label: 'INR', text: 'Rupees' },
   'AUD': { symbol: '$', code: 'AUD', label: 'AUD', text: 'AUD' },
+  'SGD': { symbol: '$', code: 'SGD', label: 'SGD', text: 'SGD' },
   'USD': { symbol: '$', code: 'USD', label: 'USD', text: 'USD' },
 }
 
@@ -75,10 +76,12 @@ function InvoiceScreen() {
         <div className='flex mb-5'>
           <section>
             <select value={currency} onChange={onChangeCurrency}>
-              <option value={"INR"}>₹ - Rupee</option>
-              <option value={"USD"}>$ - USD</option>
-              <option value={"AUD"}>$ - AUD</option>
-            </select> 
+              {
+                Object.keys(currencyList).map((cur) => (
+                  <option key={cur} value={cur}>{currencyList[cur].symbol} - {currencyList[cur].text}</option>
+                ))
+              }
+            </select>
           </section>
           <section className='pl-5 flex'>
             <div className='pl-5'>
