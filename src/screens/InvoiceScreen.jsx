@@ -9,7 +9,9 @@ const currencyList = {
   'INR': { symbol: '₹', code: 'INR', label: 'INR', text: 'Rupees' },
   'AUD': { symbol: '$', code: 'AUD', label: 'AUD', text: 'AUD' },
   'SGD': { symbol: '$', code: 'SGD', label: 'SGD', text: 'SGD' },
+  'MYR': { symbol: ' ', code: 'MYR', label: 'MYR', text: 'Malaysian Ringgit' },
   'USD': { symbol: '$', code: 'USD', label: 'USD', text: 'USD' },
+  'EUR': { symbol: '€', code: 'EUR', label: 'EUR', text: 'Euro' },
 }
 
 function InvoiceScreen() {
