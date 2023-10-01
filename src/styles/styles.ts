@@ -43,16 +43,31 @@ const styles: CSSClasses = {
   'rad-sm': {
     borderRadius: '4px',
   },
+  'rad-sm-t': {
+    borderTopLeftRadius: '4px',
+    borderTopRightRadius: '4px'
+  },
 
   flex: {
     display: 'flex',
     flexDirection: 'row',
     flexWrap: 'nowrap',
   },
+  spaceBetween: {
+    justifyContent: 'space-between',
+  },
+
+  flexEnd: {
+    justifyContent: 'flex-end',
+  },
+
+  flexCenter: {
+    justifyContent: 'center',
+  },
 
   'w-auto': {
     flex: 1,
-    paddingRight: '8px',
+    paddingRight: '6px',
   },
 
   'ml-30': {
@@ -103,6 +118,10 @@ const styles: CSSClasses = {
     width: '25%',
   },
 
+  'w-20': {
+    width: '20%',
+  },
+
   'w-17': {
     width: '17%',
   },
@@ -129,63 +148,73 @@ const styles: CSSClasses = {
   },
 
   'mt-40': {
-    marginTop: '40px',
+    marginTop: '38px',
   },
 
   'mt-30': {
-    marginTop: '30px',
+    marginTop: '28px',
   },
 
   'mt-20': {
-    marginTop: '20px',
+    marginTop: '18px',
   },
 
   'mt-10': {
-    marginTop: '10px',
+    marginTop: '8px',
   },
 
+  'mb-3': {
+    marginBottom: '1px',
+  },
+  'mr-3': {
+    marginRight: '2px',
+  },
   'mb-5': {
-    marginBottom: '5px',
+    marginBottom: '3px',
   },
 
+  'ptb-4': {
+    paddingTop: '2px',
+    paddingBottom: '2px',
+  },
   'p-4-8': {
-    padding: '4px 8px',
+    padding: '3x 6px',
   },
 
   'p-5': {
-    padding: '5px',
+    padding: '3px',
   },
 
   'pl-5': {
-    paddingLeft: '5px',
+    paddingLeft: '3px',
   },
 
   'p-10': {
-    padding: '10px',
+    padding: '8px',
   },
 
   'pt-10': {
-    paddingTop: '10px',
+    paddingTop: '8px',
   },
 
   'pt-20': {
-    paddingTop: '20px',
+    paddingTop: '18px',
   },
 
   'pt-30': {
-    paddingTop: '30px',
+    paddingTop: '28px',
   },
 
   'pb-10': {
-    paddingBottom: '10px',
+    paddingBottom: '8px',
   },
 
   'pb-20': {
-    paddingBottom: '20px',
+    paddingBottom: '18px',
   },
 
   'pb-30': {
-    paddingBottom: '30px',
+    paddingBottom: '28px',
   },
 
   right: {
@@ -193,34 +222,34 @@ const styles: CSSClasses = {
   },
 
   bold: {
-    fontWeight: 'bold',
+    fontWeight: '600',
   },
 
   'fs-14': {
-    fontSize: '14px',
+    fontSize: '10px',
   },
 
   'fs-16': {
-    fontSize: '16px',
+    fontSize: '12px',
   },
 
   'fs-20': {
-    fontSize: '20px',
+    fontSize: '16px',
   },
 
   'fs-45': {
-    fontSize: '45px',
+    fontSize: '35px',
   },
 
   page: {
     fontFamily: 'Outfit',
-    fontSize: '13px',
+    fontSize: '9px',
     color: '#555',
-    padding: '40px 35px',
+    padding: '45px 40px',
   },
 
   span: {
-    padding: '4px 12px 4px 0',
+    padding: '2px 10px 2px 0',
   },
 
   logo: {

@@ -1,4 +1,6 @@
 import React, { FC, useState } from 'react'
+import { Text } from '@react-pdf/renderer'
+import compose from '../styles/compose'
 
 export interface SelectOption {
   value: string
@@ -26,29 +28,35 @@ const EditableSelect: FC<Props> = ({
 
   return (
     <>
-      {isEditing ? (
-        <select
-          className={'select ' + (className ? className : '')}
-          value={value}
-          onChange={onChange ? (e) => onChange(e.target.value) : undefined}
-          onBlur={() => setIsEditing(false)}
-          autoFocus={true}
-        >
-          {options?.map((option) => (
-            <option key={option.text} value={option.value}>
-              {option.text}
-            </option>
-          ))}
-        </select>
+      {pdfMode ? (
+        <Text style={compose('span ' + (className ? className : ''))}>{value}</Text>
       ) : (
-        <input
-          readOnly={true}
-          type="text"
-          className={'input ' + (className ? className : '')}
-          value={value || ''}
-          placeholder={placeholder || ''}
-          onFocus={() => setIsEditing(true)}
-        />
+        <>
+          {isEditing ? (
+            <select
+              className={'select ' + (className ? className : '')}
+              value={value}
+              onChange={onChange ? (e) => onChange(e.target.value) : undefined}
+              onBlur={() => setIsEditing(false)}
+              autoFocus={true}
+            >
+              {options?.map((option) => (
+                <option key={option.text} value={option.value}>
+                  {option.text}
+                </option>
+              ))}
+            </select>
+          ) : (
+            <input
+              readOnly={true}
+              type="text"
+              className={'input ' + (className ? className : '')}
+              value={value || ''}
+              placeholder={placeholder || ''}
+              onFocus={() => setIsEditing(true)}
+            />
+          )}
+        </>
       )}
     </>
   )

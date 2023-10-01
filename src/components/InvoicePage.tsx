@@ -6,6 +6,7 @@ import EditableInput from './EditableInput'
 import EditableTextarea from './EditableTextarea'
 import EditableCalendarInput from './EditableCalendarInput'
 import EditableFileImage from './EditableFileImage'
+import { Font, BlobProvider } from '@react-pdf/renderer'
 // import countryList from '../data/countryList'
 import View from './View'
 import Text from './Text'
@@ -13,6 +14,36 @@ import Download from './DownloadPDF'
 import format from 'date-fns/format'
 import { formatCurrency, numInWords } from '../utils/utils'
 import fetchData from '../utils/fetchData'
+import Document from './Document'
+import Page from './Page'
+
+/**
+ * "200": "http://fonts.gstatic.com/s/outfit/v11/QGYyz_MVcBeNP4NjuGObqx1XmO1I4bC1C4G-EiAou6Y.ttf",
+ * "300": "http://fonts.gstatic.com/s/outfit/v11/QGYyz_MVcBeNP4NjuGObqx1XmO1I4W61C4G-EiAou6Y.ttf",
+ * "regular": "http://fonts.gstatic.com/s/outfit/v11/QGYyz_MVcBeNP4NjuGObqx1XmO1I4TC1C4G-EiAou6Y.ttf",      
+ * "500": "http://fonts.gstatic.com/s/outfit/v11/QGYyz_MVcBeNP4NjuGObqx1XmO1I4QK1C4G-EiAou6Y.ttf",
+ * "600": "http://fonts.gstatic.com/s/outfit/v11/QGYyz_MVcBeNP4NjuGObqx1XmO1I4e6yC4G-EiAou6Y.ttf",
+ * "700": "http://fonts.gstatic.com/s/outfit/v11/QGYyz_MVcBeNP4NjuGObqx1XmO1I4deyC4G-EiAou6Y.ttf",
+ */
+
+Font.register({
+  family: 'Outfit',
+  fonts: [
+    {
+      src: 'https://fonts.gstatic.com/s/outfit/v11/QGYyz_MVcBeNP4NjuGObqx1XmO1I4TC1C4G-EiAou6Y.ttf',
+      fontWeight: 400
+    },
+    {
+      src: 'https://fonts.gstatic.com/s/outfit/v11/QGYyz_MVcBeNP4NjuGObqx1XmO1I4QK1C4G-EiAou6Y.ttf',
+      fontWeight: 500
+    },
+    {
+      src: 'https://fonts.gstatic.com/s/outfit/v11/QGYyz_MVcBeNP4NjuGObqx1XmO1I4e6yC4G-EiAou6Y.ttf',
+      fontWeight: 600
+    },
+    
+  ]
+})
 
 interface Props {
   data?: Invoice
@@ -181,9 +212,9 @@ const InvoicePage: FC<Props> = ({ data, pdfMode, taxOptions, currency }) => {
   }
 
   return (
-    <div>
-      <div id="section-to-print" className="page invoice-wrapper">
-        {!pdfMode && <Download data={invoice} />}
+    <Document pdfMode={pdfMode}>
+      <Page pdfMode={pdfMode} id="section-to-print" className="invoice-wrapper">
+        {!pdfMode && <Download data={invoice} taxOptions={taxOptions} currency={currency} />}
 
         <View className="flex" pdfMode={pdfMode}>
           <View className="w-60" pdfMode={pdfMode}>
@@ -263,10 +294,10 @@ const InvoicePage: FC<Props> = ({ data, pdfMode, taxOptions, currency }) => {
           </View>
           <View className="w-40 right" pdfMode={pdfMode}>
             <EditableFileImage
-              className="logo"
+              className="logo right flex flexEnd"
               placeholder="Your Logo"
               value={require(`../images/${invoice.logo}`)}
-              width={invoice.logoWidth}
+              width={pdfMode ? invoice.logoWidth - 20 : invoice.logoWidth}
               pdfMode={pdfMode}
               onChangeImage={(value) => handleChange('logo', value)}
               onChangeWidth={(value) => handleChange('logoWidth', value)}
@@ -274,10 +305,10 @@ const InvoicePage: FC<Props> = ({ data, pdfMode, taxOptions, currency }) => {
           </View>
         </View>
 
-        <View className="flex mt-10" pdfMode={pdfMode}>
-          <View className="w-50 bg-theme-light p-10 rad-sm mr-10" pdfMode={pdfMode}>
+        <View className="flex mt-10 spaceBetween" pdfMode={pdfMode}>
+          <View className="w-48 bg-theme-light p-10 rad-sm mr-10" pdfMode={pdfMode}>
             <EditableInput
-              className="fs-16 bold theme-dark mb-5"
+              className="fs-16 bold theme-dark mb-5 mb-3"
               value={invoice.billBy}
               onChange={(value) => handleChange('billTo', value)}
               pdfMode={pdfMode}
@@ -328,7 +359,7 @@ const InvoicePage: FC<Props> = ({ data, pdfMode, taxOptions, currency }) => {
           </View>
           <View className="w-50 bg-theme-light p-10 rad-sm" pdfMode={pdfMode}>
             <EditableInput
-              className="fs-16 bold theme-dark mb-5"
+              className="fs-16 bold theme-dark mb-5 mb-3"
               value={invoice.billTo}
               onChange={(value) => handleChange('billTo', value)}
               pdfMode={pdfMode}
@@ -375,7 +406,7 @@ const InvoicePage: FC<Props> = ({ data, pdfMode, taxOptions, currency }) => {
           </View>
         </View>
 
-        <View className="mt-20 bg-theme-dark flex rad-sm-t" pdfMode={pdfMode}>
+        <View className="mt-10 bg-theme-dark flex rad-sm-t" pdfMode={pdfMode}>
           <View className="w-5 p-4-8" pdfMode={pdfMode}>
             <Text></Text>
           </View>
@@ -387,7 +418,7 @@ const InvoicePage: FC<Props> = ({ data, pdfMode, taxOptions, currency }) => {
               pdfMode={pdfMode}
             />
           </View>
-          <View className="w-20 ptb-4" pdfMode={pdfMode}>
+          <View className="w-20 ptb-4 flex center flexCenter" pdfMode={pdfMode}>
             <EditableInput
               className="white bold center"
               value={invoice.productLineDuration}
@@ -395,7 +426,7 @@ const InvoicePage: FC<Props> = ({ data, pdfMode, taxOptions, currency }) => {
               pdfMode={pdfMode}
             />
           </View>
-          <View className="w-10 ptb-4" pdfMode={pdfMode}>
+          <View className="w-10 ptb-4 center flex flexCenter" pdfMode={pdfMode}>
             <EditableInput
               className="white bold center"
               value={invoice.productLineHours}
@@ -403,7 +434,7 @@ const InvoicePage: FC<Props> = ({ data, pdfMode, taxOptions, currency }) => {
               pdfMode={pdfMode}
             />
           </View>
-          <View className="w-17 ptb-4" pdfMode={pdfMode}>
+          <View className="w-17 ptb-4 center flex flexCenter" pdfMode={pdfMode}>
             <EditableInput
               className="white bold center"
               value={invoice.productLineQuantityRate}
@@ -411,7 +442,7 @@ const InvoicePage: FC<Props> = ({ data, pdfMode, taxOptions, currency }) => {
               pdfMode={pdfMode}
             />
           </View>
-          <View className="w-10 ptb-4" pdfMode={pdfMode}>
+          <View className="w-10 ptb-4 flex flexEnd right mr-3" pdfMode={pdfMode}>
             <EditableInput
               className="white bold right"
               value={invoice.productLineQuantityAmount}
@@ -430,7 +461,7 @@ const InvoicePage: FC<Props> = ({ data, pdfMode, taxOptions, currency }) => {
               <View className="w-5 p-4-8" pdfMode={pdfMode}>
                 <Text key={i} pdfMode={pdfMode}>{(i+1)+"."}</Text>
               </View>
-              <div className="view w-40 ptb-4">
+              <View pdfMode={pdfMode} className="view w-40 ptb-4">
                 <EditableTextarea
                   className="dark"
                   placeholder="Enter item name/description"
@@ -438,16 +469,16 @@ const InvoicePage: FC<Props> = ({ data, pdfMode, taxOptions, currency }) => {
                   onChange={(value:string) => handleProductLineChange(i, 'description', value)}
                   pdfMode={pdfMode}
                 />
-              </div>
-              <div className="view w-20 p-4-8">
+              </View>
+              <View pdfMode={pdfMode} className="view w-20 ptb-4 flex center flexCenter">
                 <EditableTextarea
                   className="dark center"
                   value={productLine.duration}
                   onChange={(value:string) => handleProductLineChange(i, 'duration', value)}
                   pdfMode={pdfMode}
                 />
-              </div>
-              <View className="w-10 ptb-4" pdfMode={pdfMode}>
+              </View>
+              <View className="w-10 ptb-4 center flex flexCenter" pdfMode={pdfMode}>
                 <EditableInput
                   className="dark center"
                   value={productLine.hours}
@@ -455,7 +486,7 @@ const InvoicePage: FC<Props> = ({ data, pdfMode, taxOptions, currency }) => {
                   pdfMode={pdfMode}
                 />
               </View>
-              <View className="w-17 ptb-4" pdfMode={pdfMode}>
+              <View className="w-17 ptb-4 center flex flexCenter" pdfMode={pdfMode}>
                 <EditableInput
                   className="dark center"
                   value={formatCurrency(productLine.rate)}
@@ -463,7 +494,7 @@ const InvoicePage: FC<Props> = ({ data, pdfMode, taxOptions, currency }) => {
                   pdfMode={pdfMode}
                 />
               </View>
-              <View className="w-10 ptb-4" pdfMode={pdfMode}>
+              <View className="w-10 ptb-4 right flex flexEnd mr-3" pdfMode={pdfMode}>
                 <Text className="dark right" pdfMode={pdfMode}>
                   {calculateAmount(productLine.hours, productLine.rate)}
                 </Text>
@@ -482,18 +513,22 @@ const InvoicePage: FC<Props> = ({ data, pdfMode, taxOptions, currency }) => {
           )
         })}
 
-        <View className="flex" pdfMode={pdfMode}>
-          <View className="w-60" pdfMode={pdfMode}>
-            <View className="mt-10 donot-print" pdfMode={pdfMode}>
-              {!pdfMode && (
-                <button className="link" onClick={handleAdd}>
-                  <span className="icon icon-add bg-green mr-10"></span>
-                  Add Line Item
-                </button>
-              )}
+        {
+          pdfMode ? null : (
+            <View className="flex" pdfMode={pdfMode}>
+              <View className="w-60" pdfMode={pdfMode}>
+                <View className="mt-10 donot-print" pdfMode={pdfMode}>
+                  {!pdfMode && (
+                    <button className="link" onClick={handleAdd}>
+                      <span className="icon icon-add bg-green mr-10"></span>
+                      Add Line Item
+                    </button>
+                  )}
+                </View>
+              </View>
             </View>
-          </View>
-        </View>
+          )
+        }
 
         {
           (taxOptions?.igst || taxOptions?.cgst || taxOptions?.sgst) ? (
@@ -503,13 +538,13 @@ const InvoicePage: FC<Props> = ({ data, pdfMode, taxOptions, currency }) => {
                 <View className="flex p-5" pdfMode={pdfMode}>
                   <View className="w-40" pdfMode={pdfMode}>
                     <EditableInput
-                      className="bold right"
+                      className="flex bold right flexEnd"
                       value={invoice.subTotalLabel}
                       onChange={(value) => handleChange('totalLabel', value)}
                       pdfMode={pdfMode}
                     />
                   </View>
-                  <View className="w-60 flex" pdfMode={pdfMode}>
+                  <View className="w-60 flex right flexEnd" pdfMode={pdfMode}>
                     {/* <EditableInput
                       className="dark bold right"
                       value={invoice.currency}
@@ -543,7 +578,7 @@ const InvoicePage: FC<Props> = ({ data, pdfMode, taxOptions, currency }) => {
                       pdfMode={pdfMode}
                     />
                   </View>
-                  <View className="w-60 flex" pdfMode={pdfMode}>
+                  <View className="w-60 flex right flexEnd" pdfMode={pdfMode}>
                     {/* <EditableInput
                       className="dark bold right"
                       value={currency?.symbol}
@@ -577,7 +612,7 @@ const InvoicePage: FC<Props> = ({ data, pdfMode, taxOptions, currency }) => {
                       pdfMode={pdfMode}
                     />
                   </View>
-                  <View className="w-60 flex" pdfMode={pdfMode}>
+                  <View className="w-60 flex right flexEnd" pdfMode={pdfMode}>
                     {/* <EditableInput
                       className="dark bold right"
                       value={currency?.symbol}
@@ -611,7 +646,7 @@ const InvoicePage: FC<Props> = ({ data, pdfMode, taxOptions, currency }) => {
                       pdfMode={pdfMode}
                     />
                   </View>
-                  <View className="w-60 flex" pdfMode={pdfMode}>
+                  <View className="w-60 flex right flexEnd" pdfMode={pdfMode}>
                     {/* <EditableInput
                       className="dark bold right"
                       value={currency?.symbol}
@@ -653,7 +688,7 @@ const InvoicePage: FC<Props> = ({ data, pdfMode, taxOptions, currency }) => {
                   pdfMode={pdfMode}
                 />
               </View>
-              <View className="w-60 bd-t flex" pdfMode={pdfMode}>
+              <View className="w-60 bd-t flex right flexEnd" pdfMode={pdfMode}>
                 {/* <EditableInput
                   className="dark bold right"
                   value={`${currency?.code} ${currency?.symbol}`}
@@ -672,7 +707,7 @@ const InvoicePage: FC<Props> = ({ data, pdfMode, taxOptions, currency }) => {
           </View>
         </View>
 
-        <div className="view mt-20">
+        <View pdfMode={pdfMode} className="view mt-20">
           <EditableInput
             className="bold theme-dark w-100"
             value={invoice.termLabel}
@@ -686,7 +721,7 @@ const InvoicePage: FC<Props> = ({ data, pdfMode, taxOptions, currency }) => {
             onChange={(value:string) => handleChange('term', value)}
             pdfMode={pdfMode}
           />
-        </div>
+        </View>
         <View className="mt-10" pdfMode={pdfMode}>
           <EditableInput
             className="bold theme-dark w-100"
@@ -772,7 +807,7 @@ const InvoicePage: FC<Props> = ({ data, pdfMode, taxOptions, currency }) => {
           </View>
           
         </View>
-        <div className="view mt-20">
+        <View pdfMode={pdfMode} className="view mt-20">
           <EditableTextarea
             className="w-100 center"
             rows={2}
@@ -780,16 +815,42 @@ const InvoicePage: FC<Props> = ({ data, pdfMode, taxOptions, currency }) => {
             onChange={(value:string) => handleChange('notes', value)}
             pdfMode={pdfMode}
           />
-        </div>
+        </View>
         
-      </div>
+      </Page>
+      
+      {
+        !pdfMode ? (
+          <div className='center'>
+            <button onClick={saveInvoice}>
+              Save Invoice
+            </button>
+          </div>
+        ) : null
+      }
 
-      <div className='center'>
-        <button onClick={saveInvoice}>
-          Save Invoice
-        </button>
-      </div>
-    </div>
+      {/* {
+        pdfMode ? null : (
+          <div className='w-100'>
+          <BlobProvider document={<InvoicePage
+              pdfMode={true}
+              taxOptions={taxOptions}
+              currency={currency}
+              data={invoice}
+              />}>
+            {({ blob, url, loading, error }) => {
+              // Do whatever you need with blob here
+              console.log(url);
+              if (url) {
+                return (<iframe className='w-100' style={{ height: '500px' }} title='Invoice' src={url}></iframe>)
+              }
+              return null;
+            }}
+          </BlobProvider>
+        </div>
+        )
+      } */}
+    </Document>
   )
 }
 

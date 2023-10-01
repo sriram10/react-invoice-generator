@@ -6,7 +6,7 @@ import { initialInvoice } from '../data/initialData';
 import fetchData from '../utils/fetchData';
 
 const currencyList = {
-  'INR': { symbol: '₹', code: 'INR', label: 'INR', text: 'Rupees' },
+  'INR': { symbol: ' ', code: 'INR', label: 'INR', text: 'Rupees' },
   'AUD': { symbol: '$', code: 'AUD', label: 'AUD', text: 'AUD' },
   'SGD': { symbol: '$', code: 'SGD', label: 'SGD', text: 'SGD' },
   'MYR': { symbol: ' ', code: 'MYR', label: 'MYR', text: 'Malaysian Ringgit' },

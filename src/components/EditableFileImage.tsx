@@ -1,6 +1,8 @@
 import React, { FC, useRef, useState } from 'react'
 import Slider from 'rc-slider'
+import { Image, View } from '@react-pdf/renderer'
 import useOnClickOutside from '../hooks/useOnClickOutside'
+import compose from '../styles/compose'
 import 'rc-slider/assets/index.css'
 
 interface Props {
@@ -67,6 +69,21 @@ const EditableFileImage: FC<Props> = ({ className, placeholder, value, width, on
   const clearImage = () => {
     if (typeof onChangeImage === 'function') {
       onChangeImage('')
+    }
+  }
+
+  if (pdfMode) {
+    if (value) {
+      return (
+        <View style={{ ...compose(`view flex flexEnd`), position: 'relative'}}>
+          <Image
+            style={{...compose(`image ${className ? className : ''}`), maxWidth: width, maxHeight: width}}
+            src={value}
+          />
+        </View>
+      )
+    } else {
+      return <></>
     }
   }
 
