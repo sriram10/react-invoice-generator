@@ -20,6 +20,7 @@ const LoginPage:FC = () => {
   return (
     <div className="login">
       <div className="login__container">
+        <h1 className="center fs-30">Invoice Generator</h1>
         <input
           type="email"
           className="login__textBox"

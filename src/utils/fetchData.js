@@ -18,7 +18,11 @@ const fetchData = ({
     .then(res => {
       console.log(res)
       if (res?.status === 'SUCCESS') {
-        resolve(res?.data || res?.message)
+        if (res?.pagination) {
+          resolve(res)
+        } else {
+          resolve(res?.data || res?.message)
+        }
       } else {
         reject(res?.message)
       }
