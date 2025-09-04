@@ -14,67 +14,24 @@ import {
   rankItem,
 } from '@tanstack/match-sorter-utils'
 
-function toTitleCase(str) {
-  if (!str) return '';
-  // Convert the entire string to lowercase to handle varying initial capitalization
-  let words = str.toLowerCase().split(' ');
 
-  // Define a list of "minor" words that should generally remain lowercase
-  const minorWords = ['a', 'an', 'the', 'and', 'but', 'or', 'for', 'nor', 'on', 'at', 'to', 'of', 'in', 'with'];
-
-  // Iterate through each word and apply title case logic
-  for (let i = 0; i < words.length; i++) {
-    const word = words[i];
-
-    // Capitalize the first letter of the word if it's not a minor word (and not the first word)
-    if (i === 0 || !minorWords.includes(word)) {
-      words[i] = word.charAt(0).toUpperCase() + word.slice(1);
-    }
-  }
-
-  // Join the words back into a single string
-  return words.join(' ');
-}
-
-const InvoiceList = () => {
+const InvoiceList = ({ clientName }) => {
   const navigate = useNavigate();
-  const [clients, setClients] = useState([]);
   const [list, setList] = useState({
     data: []
   });
   const [pagination, setPagination] = useState({
     page_no: 1,
-    per_page: 10,
+    per_page: 15,
     total_count: 0,
     total_pages: 0
   });
   const [loading, setLoading] = useState(false);
-  const [clientsLoading, setClientsLoading] = useState(false);
-
-  const [globalFilter, setGlobalFilter] = React.useState('')
+  
   const [sorting, setSorting] = useState([{ id: 'invoiceDate', desc: true }]);
-  // Fetch clients from /clients API
-  const fetchClients = async () => {
-    setClientsLoading(true);
-    try {
-      const response = await fetchData({ url: '/clients' });
-      const result = response.map(client => {
-        return {
-          label: toTitleCase(client.replace(/-/g, ' ')),
-          value: client
-        }
-      });
-      setClients(result || []);
-    } catch (error) {
-      console.error('Error fetching clients:', error);
-      setClients([]);
-    } finally {
-      setClientsLoading(false);
-    }
-  };
 
   // Fetch data with pagination
-  const fetchInvoices = async (pageNo = 1, perPage = 10, clientName = '') => {
+  const fetchInvoices = async (pageNo = 1, perPage = 15, clientName = '') => {
     setLoading(true);
     try {
       const url = `/getinvoice?page_no=${pageNo}&per_page=${perPage}${clientName ? `&client=${clientName}` : ''}`;
@@ -85,7 +42,7 @@ const InvoiceList = () => {
       });
       setPagination(response.pagination || {
         page_no: 1,
-        per_page: 10,
+        per_page: 15,
         total_count: 0,
         total_pages: 0
       });
@@ -98,13 +55,8 @@ const InvoiceList = () => {
   };
 
   useEffect(() => {
-    // Fetch clients on component mount
-    fetchClients();
-  }, []);
-
-  useEffect(() => {
-    fetchInvoices(pagination.page_no, pagination.per_page, globalFilter);
-  }, [pagination.page_no, pagination.per_page, globalFilter]);
+    fetchInvoices(pagination.page_no, pagination.per_page, clientName);
+  }, [pagination.page_no, pagination.per_page, clientName]);
 
   const fuzzyFilter = (row, columnId, value, addMeta) => {
     // Rank the item
@@ -144,18 +96,19 @@ const InvoiceList = () => {
       }
     ],
     state: {
-      sorting,
-      globalFilter
+      sorting
     },
     filterFns: {
       fuzzy: fuzzyFilter,
     },
-    onGlobalFilterChange: setGlobalFilter,
     globalFilterFn: fuzzyFilter,
     onSortingChange: setSorting,
     getSortedRowModel: getSortedRowModel(),
     getCoreRowModel: getCoreRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
+    renderFallbackValue: () => {
+      return <div>No data</div>
+    },
     // Remove client-side pagination
     manualPagination: true,
     pageCount: pagination.total_pages,
@@ -178,13 +131,7 @@ const InvoiceList = () => {
     }));
   };
 
-  // Handle client filter change
-  const handleClientFilterChange = (clientName) => {
-    setGlobalFilter(clientName);
-    setPagination(prev => ({ ...prev, page_no: 1 })); // Reset to first page
-  };
-
-  if (list.length === 0) {
+  if (list?.data?.length === 0) {
     return (
       <h4 style={{ textAlign: "center" }}>
         Loading... Please wait while we fetch the data.
@@ -203,29 +150,7 @@ const InvoiceList = () => {
   // console.log(list, table.getRowModel())
 
   return (
-    <div>
-      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-        <div/>
-        <div>
-          <select
-            value={globalFilter}
-            onChange={e => handleClientFilterChange(e.target.value)}
-            style={{ padding: '5px 10px' }}
-          >
-            <option value="">All Clients</option>
-            {
-              clients.map(c => (
-                <option key={c.value} value={c.value}>{c.label}</option>
-              ))
-            }
-          </select>
-          {clientsLoading && (
-            <span style={{ marginLeft: '10px', fontSize: '12px', color: '#666' }}>
-              Loading clients...
-            </span>
-          )}
-        </div>
-      </div>
+    <div style={{ flex: 1 }}>
       <table className='table w-100'>
         <thead>
           {table.getHeaderGroups().map(headerGroup => (

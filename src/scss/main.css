@@ -45,6 +45,41 @@
   }
 }
 
+.search-input {
+  flex: 1;
+  padding: 6px 10px;
+  border: 1px solid #dfdfdf;
+  border-radius: 3px;
+  background-color: #fff;
+  font-size: 16px;
+}
+
+.btn-clear {
+  padding: 6px 10px;
+  border: 1px solid #898989;
+  border-radius: 3px;
+}
+
+
+.client-label {
+  cursor: pointer;
+  padding: 5px 0;
+  border-bottom: 1px solid #dfdfdf;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin: 0;
+  color: #555;
+  transition: background-color 0.2s ease-in-out;
+  &:hover {
+    background-color: #e0e0e0;
+  }
+  &:focus {
+    background-color: #d0d0d0;
+  }
+}
+
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
